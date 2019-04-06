@@ -1,0 +1,296 @@
+<div class="cnvs">
+  <!-- <mat-card class="formCard"> -->
+  <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom" class="multi-step-form">
+    <!-- STEP 1 -->
+    <mat-step [stepControl]="firstFormGroup">
+      <h2 class="shoutingText"><b>It's our mission to save all Aussies through their Energy and Health Insurance on
+          average
+          $725* per year</b></h2>
+      <!-- STEP 1 FORM 1  -->
+      <mat-card class="formCard">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Energy <br>10 sec.</ng-template>
+          <h3>Which energy service can we help save you money on?</h3>
+          <div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="electricityAndGasRadio" checked class="radio_item" value="Electricity and gas"
+                name="ElectricityGas">
+              <label class="label_item" for="electricityAndGasRadio">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left: 28px;">Electricity
+                  and Gas</span>
+                <img class="radioImage" src="/assets/images/ElectricityGas-selected.svg">
+              </label>
+            </div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="justElectricityRadio" class="radio_item" value="Just Electricity"
+                name="ElectricityGas">
+              <label class="label_item" for="justElectricityRadio">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left: 36px;">Just Electricity</span>
+                <img class="radioImage" src="/assets/images/Electricity-selected.svg">
+              </label>
+            </div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="JustGas" class="radio_item" value="Just Gas" name="ElectricityGas">
+              <label class="label_item" for="JustGas">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left: 50px;">Just Gas</span>
+                <img class="radioImage" src="/assets/images/Gas-Selected.svg">
+              </label>
+            </div>
+          </div>
+
+        </form>
+        <div>
+          <button mat-button mat-raised-button class="buttons nextButton" matStepperNext>Next
+            ></button>
+        </div>
+      </mat-card>
+    </mat-step>
+    <!-- STEP 1 FORM 2 -->
+    <mat-step [stepControl]="secondFormGroup">
+      <h2 class="shoutingText">You could have now saved <b>$348* <br>Now you are really kicking some goals</b></h2>
+      <mat-card class="formCard">
+        <form [formGroup]="secondFormGroup" *ngIf="healthInsuranceStep==1">
+          <ng-template matStepLabel>Health Insurance <br>30 sec.</ng-template>
+          <h3>Who do you want your health insurance to cover...</h3>
+          <div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="FamilyRadio" [checked]="hcCovertype=='Family'" class="radio_item" value="Family"
+                name="HCcover">
+              <label class="label_item" for="FamilyRadio">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left: 28px;">Family
+                </span>
+                <img *ngIf="hcCovertype=='Family'" class="peopleRadioImage" src="/assets/images/Family-Selected.svg">
+                <img *ngIf="hcCovertype!='Family'" class="peopleRadioImage" src="/assets/images/Family.svg"
+                  (click)="swapRadioImage('Family')">
+              </label>
+            </div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="singleParentRadio" [checked]="hcCovertype=='Single Parent'" class="radio_item"
+                value="Single Parent" name="HCcover">
+              <label class="label_item" for="singleParentRadio">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left: 36px;">Single Parent</span>
+                <img *ngIf="hcCovertype=='Single Parent'" class="peopleRadioImage"
+                  src="/assets/images/SingleParent-Selected.svg">
+                <img *ngIf="hcCovertype!='Single Parent'" class="peopleRadioImage" src="/assets/images/SingleParent.svg"
+                  (click)="swapRadioImage('Single Parent')">
+              </label>
+            </div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="single" class="radio_item" [checked]="hcCovertype=='Single'" value="Single"
+                name="HCcover">
+              <label class="label_item" for="single">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left:50px;">Just Gas</span>
+                <img *ngIf="hcCovertype=='Single'" class="peopleRadioImage" src="/assets/images/Single-Selected.svg">
+                <img *ngIf="hcCovertype!='Single'" class="peopleRadioImage" src="/assets/images/Single.svg"
+                  (click)="swapRadioImage('Single')">
+              </label>
+            </div>
+            <div style="display:inline-block;position:relative">
+              <input type="radio" id="couples" class="radio_item" [checked]="hcCovertype=='Couples'" value="Couples"
+                name="HCcover">
+              <label class="label_item" for="couples">
+                <span style="font-size: 9px;position: absolute;bottom: 17px;left: 50px;">Just Gas</span>
+                <img *ngIf="hcCovertype=='Couples'" class="peopleRadioImage" src="/assets/images/Couples-Selected.svg">
+                <img *ngIf="hcCovertype!='Couples'" class="peopleRadioImage" src="/assets/images/Couples.svg"
+                  (click)="swapRadioImage('Couples')">
+              </label>
+            </div>
+          </div>
+          <div>
+            <button mat-button mat-raised-button class="buttons prevtButton" matStepperPrevious>
+              < Back</button> <button mat-button mat-raised-button class="buttons nextButton"
+                (click)="healthInsuranceStepIncrement()">Next >
+            </button>
+          </div>
+        </form>
+        <!-- STEP 1 FROM 3 -->
+        <form [formGroup]="thirdFormGroup1" *ngIf="healthInsuranceStep==2">
+          <ng-template matStepLabel>Health Insurance <br>30 sec.</ng-template>
+          <h3>Your current health fund provider</h3>
+
+          <mat-form-field style="width:75%">
+            <mat-label>Current Health Fund Provider</mat-label>
+            <mat-select name="hfProvider" formControlName="floatLabel" [(value)]="selectHealthFund"
+              placeholder="Select your current health fund provider">
+              <mat-option *ngFor="let hfProvider of hfProviders" value={{hfProvider}}>
+                {{hfProvider}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <h3>OR</h3>
+          <mat-grid-list cols="3" rowHeight="3:1">
+            <mat-grid-tile *ngFor="let mainHFProvider of mainHFProviders">
+              <div class="mainHFProviders {{mainHFProvider.value==selectHealthFund?'active':''}}"
+                (click)="changeHealthFund(mainHFProvider.value);">
+                <i class="sprite logo_nib" [ngStyle]="styleObj[mainHFProvider.value]">&nbsp;</i>
+                <span>{{mainHFProvider.displayName}}</span>
+              </div>
+              <!-- <button mat-button>Click me!</button> -->
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button mat-button mat-raised-button class="buttons prevtButton" (click)="healthInsuranceStepDecrement()">
+              < Back</button> <button mat-button mat-raised-button [disabled]="selectHealthFund == ''"
+                class="buttons nextButton" (click)="healthInsuranceStepIncrement()">Next >
+            </button>
+          </div>
+        </form>
+        <!-- STEP 1 FORM 4 -->
+        <form [formGroup]="thirdFormGroup2" *ngIf="healthInsuranceStep==3">
+          <ng-template matStepLabel>Health Insurance <br>30 sec.</ng-template>
+
+          <h3>What hospital cover do you wish to have</h3>
+          <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="hospitalCoverCheckBox.privateHospital"
+                [ngModelOptions]="{standalone: true}">Private Hospital</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="hospitalCoverCheckBox.PregnancyBirthRelated"
+                [ngModelOptions]="{standalone: true}">Pregnancy & Birth Related</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="hospitalCoverCheckBox.HeartSurgery"
+                [ngModelOptions]="{standalone: true}">Heart Surgery</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="hospitalCoverCheckBox.AmbulanceCover"
+                [ngModelOptions]="{standalone: true}">Ambulance Cover</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="hospitalCoverCheckBox.PsychiatricServices"
+                [ngModelOptions]="{standalone: true}">Psychiatric services</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="hospitalCoverCheckBox.Rehabilitation"
+                [ngModelOptions]="{standalone: true}">Rehabilitation</mat-checkbox>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button mat-button mat-raised-button class="buttons prevtButton" (click)="healthInsuranceStepDecrement()">
+              < Back</button> <button mat-button mat-raised-button class="buttons nextButton"
+                (click)="healthInsuranceStepIncrement()" [disabled]="!hospitalCoverCheckBox.privateHospital &&
+               !hospitalCoverCheckBox.PregnancyBirthRelated && !hospitalCoverCheckBox.HeartSurgery &&
+               !hospitalCoverCheckBox.AmbulanceCover && !hospitalCoverCheckBox.PsychiatricServices  &&
+               !hospitalCoverCheckBox.Rehabilitation">Next >
+            </button>
+          </div>
+        </form>
+
+        <!-- STEP 1 FORM 5-->
+        <form [formGroup]="thirdFormGroup3" *ngIf="healthInsuranceStep==4">
+          <ng-template matStepLabel>Health Insurance <br>30 sec.</ng-template>
+          <h3>What general extras do you wish to have</h3>
+          <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="generalExtras.GeneralDental"
+                [ngModelOptions]="{standalone: true}">General Dental</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="generalExtras.MajorDental"
+                [ngModelOptions]="{standalone: true}">Major Dental</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="generalExtras.Endodontic"
+                [ngModelOptions]="{standalone: true}">Endodontic</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="generalExtras.Optical"
+                [ngModelOptions]="{standalone: true}">Opticalr</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="generalExtras.Physiotherapy"
+                [ngModelOptions]="{standalone: true}">Physiotherapy</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-checkbox color="primary" class="chkbx" [(ngModel)]="generalExtras.HearingAids"
+                [ngModelOptions]="{standalone: true}">HearingAids</mat-checkbox>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button mat-button mat-raised-button class="buttons prevtButton" (click)="healthInsuranceStepDecrement()">
+              < Back</button> <button mat-button mat-raised-button class="buttons nextButton" matStepperNext>Next >
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup">
+      <mat-card class="formCard">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Confirm Details <br>30 sec.</ng-template>
+          <h3>This is the last step!</h3>
+          <p>In order to save you your time and money we need a few basic details so that our Energy and Health
+            Insurance
+            partners can get started on helping you to move to your best possible policy.</p>
+          <mat-grid-list cols="2" rowHeight="5:1">
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width inputBox" >
+                <input matInput placeholder="First Name" value="" [formControl]="firstName" required>
+                <mat-error *ngIf="firstName.invalid">You must enter a value.</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width inputBox">
+                <input matInput placeholder="Last Name" value=""  [formControl]="lastName" required>
+                <mat-error *ngIf="lastName.invalid">You must enter a value.</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width inputBox">
+                <input matInput placeholder="Email Address" value="" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width inputBox">
+                <input matInput placeholder="Mobile Number" value="" [formControl]="Mobile"  required>
+                <mat-error *ngIf="Mobile.invalid">You must enter a value.</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class ="inputBox">
+                <mat-label>Best Time To Contact</mat-label>
+                <mat-select >
+                  <mat-option *ngFor="let time of times" [value]="time">
+                    {{time}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width inputBox">
+                <input matInput placeholder="Post Code" pattern="\d{4}" [formControl]="postCode"  required>
+                <mat-error *ngIf="postCode.errors.required">You must enter a value.</mat-error>
+                <mat-error *ngIf="postCode.errors.pattern">Enter a valid postcode</mat-error> 
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <input type="checkbox" class="normalChkBx">
+            
+              <div class="iAgreeText">I agree and understand that I will be taking up to 2 phone calls
+              from Billy Sumo's team consisting of talking to a Health Insurance savings
+              expert from Members Own, and an energy expert from Compare & Connect.
+              Please note that Residential Connections Pty Ltd, Compare & Connect trusted
+              nergy partner, may call during the call centre opening hours and email or
+              text me to discuss my energy needs. (Call Centre Hours are Mon - Thurs 9am
+              - 8pm, Fri 9am - 7pm, and Sat 10am - 5pm AEDT). In submitting this form
+              you understand and agree to our T&C's and Privacy Statements.</div>
+          </div>
+          <div>
+              <button mat-button mat-raised-button class="buttons prevtButton" matStepperPrevious>
+                  < Back</button> 
+              <button mat-button mat-raised-button class="submitButton" matStepperNext>Help Me Save Money
+                </button>
+          </div>
+        </form>
+        </mat-card>
+    </mat-step>
+
+
+  </mat-horizontal-stepper>
+  <!-- </mat-card> -->
+</div>

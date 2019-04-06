@@ -1,0 +1,153 @@
+
+.cnvs{
+    background-color: #4ABABB;
+    width:100%;
+}
+.shoutingText{
+    text-align: center;
+    color: white;
+    font-size: 24;
+    font-weight: unset;
+}
+.formCard{
+    width:85%;
+    margin:auto;
+    text-align: center;
+    height:65vh;
+    background-color: #dbf1f1;
+}
+
+.multi-step-form{
+    max-width: 65%;
+    margin: auto;
+    /* background-color: #dbf1f1; */
+    background-color: #4ABABB;
+}
+.radio_item{
+    display: none !important;
+}
+    
+.label_item .radioImage{
+    opacity: 0.1;
+    
+}
+.radioImage{
+    width:130px !important;
+    margin-top: 25px;
+    cursor: pointer;
+}
+    
+.radio_item:checked + label .radioImage{
+    opacity: 1;
+}
+.peopleRadioImage{
+    width:130px !important;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.electricityAndGasSpan{
+    background-image:url(/assets/images/ElectricityGas-selected.svg);
+}
+.energyAndGas{
+    width: 91px;
+    height: 114px;
+    background-size: cover;
+    line-height: 3;
+}
+.electricityAndGasRadio{
+    display:none;
+}
+
+.buttons{
+    width: 102px;
+    color: white;
+    font-size: 20;
+    font-weight: unset;
+    height: 38px;
+    bottom: 10px;
+    position: absolute;
+}
+.nextButton{
+    background: red;
+    float: right;
+    right: 10px;
+}
+.prevtButton{
+    background: #E5E4E4;
+    float: left;
+    left: 10px;
+}
+.submitButton{
+    background: red;
+    float: right;
+    right: 100px;
+    width: 220px;
+    color: white;
+    font-size: 20;
+    font-weight: unset;
+    height: 45px;
+    bottom: 10px;
+    position: absolute;
+}
+
+/* 
+.mainHFProviders{
+    background: grey;
+    border-radius: 30px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px;
+    width: 60%;
+    text-align: center;
+    cursor: pointer;
+} */
+.mainHFProviders:hover{
+    background: ghostwhite;
+}
+.mainHFProviders.active {
+    background: ghostwhite;
+    border-color: blue;
+}
+.sprite {
+    background-image: url(/assets/images/sprite.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+i.logo_nib {
+    height: 32px;
+    width: 41px;
+
+}
+.mainHFProviders{
+    background-color: #fff;
+    border: 1px solid #bfbebe;
+    border-radius: 32px;
+    padding: 9px 24px;
+    display: inline-block;
+    margin: 0 10px 15px;
+}
+.chkbx{
+    text-align: left !important;
+    font-size: 18px;
+    margin-left: 70px;
+    
+}
+.mat-checkbox-inner-container{
+    height:25px;
+    width:25px;
+}
+.normalChkBx{
+    display:inline-block;
+    padding-right: 10px;
+    vertical-align: top;
+}
+.iAgreeText{
+    display:inline-block;
+    font-size:8px;
+    text-align: left;
+    width:90%;
+}
+.inputBox{
+    margin-left: 60px;
+}
