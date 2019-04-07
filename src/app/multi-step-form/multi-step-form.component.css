@@ -2,6 +2,27 @@
 .cnvs{
     background-color: #4ABABB;
     width:100%;
+    height: 80vh;
+    min-height: 80vh;
+    padding-top:20px;
+}
+/* {
+    background-color: #4ABABB;
+} */
+.shoutingTextTitle{
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    font-weight: unset;
+}
+.startCard{
+    position: absolute;
+    background-color: #dbf1f1;;
+    border-radius: 3px;
+    height: 345px;
+    width: 30vw;
+    left: 55vw;
+
 }
 .shoutingText{
     text-align: center;
@@ -13,8 +34,13 @@
     width:85%;
     margin:auto;
     text-align: center;
-    height:65vh;
+    height:45vh;
     background-color: #dbf1f1;
+}
+#would-you-like-to{
+    text-align: center;
+    padding-top:45px;
+
 }
 
 .multi-step-form{
@@ -88,6 +114,19 @@
     height: 45px;
     bottom: 10px;
     position: absolute;
+}
+.getStartedButton{
+    background: red;
+    float: right;
+    /* right: 100px; */
+    width: 75%;
+    height: 45px;
+    color: white;
+    font-size: 20;
+    font-weight: unset;
+    /* bottom: 10px; */
+    left:-12.5%;
+    margin:0;
 }
 
 /* 

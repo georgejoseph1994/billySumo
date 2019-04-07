@@ -8,11 +8,13 @@ import { MultiStepFormComponent } from './multi-step-form/multi-step-form.compon
 import { MatButtonModule, MatCheckboxModule,MatFormFieldModule,MatInputModule,MatRadioModule,MatSelectModule,MatOptionModule,MatChipsModule,MatGridListModule,MatCardModule} from '@angular/material';
 import { MatStepperModule} from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MultiStepFormComponent
+    MultiStepFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

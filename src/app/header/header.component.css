@@ -1,0 +1,20 @@
+.header{
+    display: block;
+    background:white;
+    width:100%;
+    height:68px;
+}
+.header-logo-block{
+    width :70%;
+    margin:auto;
+}
+.billysumo-header-logo{
+    width:141;
+    height:57;
+}
+.phone-number-text{
+    float:right;
+    font-size: 27px;
+    font-weight:600px;
+    padding-top:16px;
+}

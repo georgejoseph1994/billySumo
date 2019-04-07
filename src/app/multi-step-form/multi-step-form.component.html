@@ -1,17 +1,37 @@
 <div class="cnvs">
-  <!-- <mat-card class="formCard"> -->
-  <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom" class="multi-step-form">
+
+  <div *ngIf="!started" >
+    <h2 class="shoutingTextTitle">Aussies who compare their Energy + Health <br>Insurance together <b>could save on
+        average $725*</b></h2>
+    
+    <mat-card class="startCard">
+      <h3 id="would-you-like-to">Would you like to do the same?</h3>
+      <br><br>
+      <mat-form-field style="width:75%;left:12.5%">
+        <mat-label>State</mat-label>
+        <mat-select name="state"  [(value)]="state"
+          placeholder="Select your state">
+          <mat-option *ngFor="let state of states" value={{state}}>
+            {{state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p style="font-size:13px;text-align: center">Takes less than 2 min, and is 100% free!</p>
+      <button mat-button mat-raised-button class="getStartedButton" (click)=flipStarted()>Get Started Now</button>
+    </mat-card>
+  </div>
+  <mat-horizontal-stepper *ngIf="started" [linear]="isLinear" #stepper labelPosition="bottom" class="multi-step-form">
     <!-- STEP 1 -->
-    <mat-step [stepControl]="firstFormGroup">
-      <h2 class="shoutingText"><b>It's our mission to save all Aussies through their Energy and Health Insurance on
+    <mat-step [stepControl]="firstFormGroup" stlye="margin-top: -35px;">
+      <h2 class="shoutingText" style="padding-top:0px;padding-bottom:0px;margin-top:0px;margin-bottom:5px;"><b>It's our mission to save all Aussies through their Energy and Health Insurance on
           average
           $725* per year</b></h2>
       <!-- STEP 1 FORM 1  -->
       <mat-card class="formCard">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Energy <br>10 sec.</ng-template>
-          <h3>Which energy service can we help save you money on?</h3>
-          <div>
+          <h3 >Which energy service can we help save you money on?</h3>
+          <div style="margin-top: -30px;">
             <div style="display:inline-block;position:relative">
               <input type="radio" id="electricityAndGasRadio" checked class="radio_item" value="Electricity and gas"
                 name="ElectricityGas">
@@ -47,7 +67,7 @@
     </mat-step>
     <!-- STEP 1 FORM 2 -->
     <mat-step [stepControl]="secondFormGroup">
-      <h2 class="shoutingText">You could have now saved <b>$348* <br>Now you are really kicking some goals</b></h2>
+      <h2 class="shoutingText" style="padding-top:0px;padding-bottom:0px;margin-top:0px;margin-bottom:5px;">You could have now saved <b>$348* <br>Now you are really kicking some goals</b></h2>
       <mat-card class="formCard">
         <form [formGroup]="secondFormGroup" *ngIf="healthInsuranceStep==1">
           <ng-template matStepLabel>Health Insurance <br>30 sec.</ng-template>
@@ -118,7 +138,7 @@
             </mat-select>
           </mat-form-field>
 
-          <h3>OR</h3>
+          <h3 style="margin-top:0;">OR</h3>
           <mat-grid-list cols="3" rowHeight="3:1">
             <mat-grid-tile *ngFor="let mainHFProvider of mainHFProviders">
               <div class="mainHFProviders {{mainHFProvider.value==selectHealthFund?'active':''}}"
@@ -216,62 +236,71 @@
         </form>
       </mat-card>
     </mat-step>
-
     <mat-step [stepControl]="thirdFormGroup">
-      <mat-card class="formCard">
-        <form [formGroup]="thirdFormGroup">
+      <mat-card class="formCard" style="height:55vh">
+        <form *ngIf="!success" [formGroup]="checkForm" (ngSubmit)="onFormSubmit()">
           <ng-template matStepLabel>Confirm Details <br>30 sec.</ng-template>
           <h3>This is the last step!</h3>
+          {{checkForm.firstName}}
           <p>In order to save you your time and money we need a few basic details so that our Energy and Health
             Insurance
             partners can get started on helping you to move to your best possible policy.</p>
           <mat-grid-list cols="2" rowHeight="5:1">
             <mat-grid-tile>
-              <mat-form-field class="example-full-width inputBox" >
-                <input matInput placeholder="First Name" value="" [formControl]="firstName" required>
-                <mat-error *ngIf="firstName.invalid">You must enter a value.</mat-error>
+              <mat-form-field class="example-full-width inputBox">
+                <input matInput placeholder="First Name" formControlName="firstName" required>
+                <mat-error *ngIf="firstName?.errors?.required">You must enter a value.</mat-error>
               </mat-form-field>
             </mat-grid-tile>
+
             <mat-grid-tile>
               <mat-form-field class="example-full-width inputBox">
-                <input matInput placeholder="Last Name" value=""  [formControl]="lastName" required>
-                <mat-error *ngIf="lastName.invalid">You must enter a value.</mat-error>
+                <input matInput placeholder="Last Name" formControlName="lastName" required>
+                <mat-error *ngIf="lastName?.errors?.required">You must enter a value.</mat-error>
               </mat-form-field>
             </mat-grid-tile>
+
             <mat-grid-tile>
               <mat-form-field class="example-full-width inputBox">
-                <input matInput placeholder="Email Address" value="" [formControl]="email" required>
+                <input matInput placeholder="Email Address" formControlName="email" required>
                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
             </mat-grid-tile>
+
+
             <mat-grid-tile>
               <mat-form-field class="example-full-width inputBox">
-                <input matInput placeholder="Mobile Number" value="" [formControl]="Mobile"  required>
-                <mat-error *ngIf="Mobile.invalid">You must enter a value.</mat-error>
+                <input matInput placeholder="Mobile Number" pattern="^\d{10}$" formControlName="mobile" required>
+                <mat-error *ngIf="mobile.errors?.required">You must enter a value.</mat-error>
+                <mat-error *ngIf="mobile.errors?.pattern">Enter phone number of 10 digits</mat-error>
               </mat-form-field>
             </mat-grid-tile>
+
             <mat-grid-tile>
-              <mat-form-field class ="inputBox">
+              <mat-form-field class="inputBox">
                 <mat-label>Best Time To Contact</mat-label>
-                <mat-select >
-                  <mat-option *ngFor="let time of times" [value]="time">
+                <mat-select formControlName="bestTime">
+                  <mat-option *ngFor="let time of times" [value]="time" required>
                     {{time}}
                   </mat-option>
                 </mat-select>
+                <mat-error *ngIf="bestTime.invalid">You must enter a value.</mat-error>
               </mat-form-field>
             </mat-grid-tile>
+
             <mat-grid-tile>
               <mat-form-field class="example-full-width inputBox">
-                <input matInput placeholder="Post Code" pattern="\d{4}" [formControl]="postCode"  required>
-                <mat-error *ngIf="postCode.errors.required">You must enter a value.</mat-error>
-                <mat-error *ngIf="postCode.errors.pattern">Enter a valid postcode</mat-error> 
+                <input matInput placeholder="Post Code" [formControl]="postCode" pattern="^\d{4}$" required>
+                <mat-error *ngIf="postCode.errors?.required">You must enter a value.</mat-error>
+                <mat-error *ngIf="postCode.errors?.pattern">Enter a valid 4 digit postcode</mat-error>
               </mat-form-field>
             </mat-grid-tile>
+
           </mat-grid-list>
           <div>
-            <input type="checkbox" class="normalChkBx">
-            
-              <div class="iAgreeText">I agree and understand that I will be taking up to 2 phone calls
+            <input type="checkbox" class="normalChkBx" [formControl]="iagree" required>
+
+            <div class="iAgreeText">I agree and understand that I will be taking up to 2 phone calls
               from Billy Sumo's team consisting of talking to a Health Insurance savings
               expert from Members Own, and an energy expert from Compare & Connect.
               Please note that Residential Connections Pty Ltd, Compare & Connect trusted
@@ -279,16 +308,26 @@
               text me to discuss my energy needs. (Call Centre Hours are Mon - Thurs 9am
               - 8pm, Fri 9am - 7pm, and Sat 10am - 5pm AEDT). In submitting this form
               you understand and agree to our T&C's and Privacy Statements.</div>
+
+
           </div>
+          <mat-error *ngIf="false">Please accept T & C to continue.</mat-error>
           <div>
-              <button mat-button mat-raised-button class="buttons prevtButton" matStepperPrevious>
-                  < Back</button> 
-              <button mat-button mat-raised-button class="submitButton" matStepperNext>Help Me Save Money
-                </button>
+            <button mat-button mat-raised-button class="buttons prevtButton" matStepperPrevious>
+              Back</button>
+            <button type="submit" value="Submit" mat-button mat-raised-button class="submitButton"
+              [disabled]="!checkForm.valid">Help
+              Me Save Money
+            </button>
           </div>
         </form>
-        </mat-card>
+        <div *ngIf="success">
+          <img style="height:300px;width:300px;"src="/assets/images/checked.png">
+          <h3>Form Submitted Succesfully</h3>
+        </div>
+      </mat-card>
     </mat-step>
+
 
 
   </mat-horizontal-stepper>
