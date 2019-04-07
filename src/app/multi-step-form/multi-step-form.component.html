@@ -1,6 +1,6 @@
 <div class="cnvs">
 
-  <div *ngIf="!started" >
+  <div *ngIf="!started" class="">
     <h2 class="shoutingTextTitle">Aussies who compare their Energy + Health <br>Insurance together <b>could save on
         average $725*</b></h2>
     
@@ -38,7 +38,7 @@
               <label class="label_item" for="electricityAndGasRadio">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left: 28px;">Electricity
                   and Gas</span>
-                <img class="radioImage" src="../assets/images/ElectricityGas-selected.svg">
+                <img class="radioImage" src="assets/images/ElectricityGas-selected.svg">
               </label>
             </div>
             <div style="display:inline-block;position:relative">
@@ -46,14 +46,14 @@
                 name="ElectricityGas">
               <label class="label_item" for="justElectricityRadio">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left: 36px;">Just Electricity</span>
-                <img class="radioImage" src="../assets/images/Electricity-selected.svg">
+                <img class="radioImage" src="assets/images/Electricity-selected.svg">
               </label>
             </div>
             <div style="display:inline-block;position:relative">
               <input type="radio" id="JustGas" class="radio_item" value="Just Gas" name="ElectricityGas">
               <label class="label_item" for="JustGas">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left: 50px;">Just Gas</span>
-                <img class="radioImage" src="../assets/images/Gas-Selected.svg">
+                <img class="radioImage" src="assets/images/Gas-Selected.svg">
               </label>
             </div>
           </div>
@@ -79,8 +79,8 @@
               <label class="label_item" for="FamilyRadio">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left: 28px;">Family
                 </span>
-                <img *ngIf="hcCovertype=='Family'" class="peopleRadioImage" src="../assets/images/Family-Selected.svg">
-                <img *ngIf="hcCovertype!='Family'" class="peopleRadioImage" src="../assets/images/Family.svg"
+                <img *ngIf="hcCovertype=='Family'" class="peopleRadioImage" src="assets/images/Family-Selected.svg">
+                <img *ngIf="hcCovertype!='Family'" class="peopleRadioImage" src="assets/images/Family.svg"
                   (click)="swapRadioImage('Family')">
               </label>
             </div>
@@ -90,8 +90,8 @@
               <label class="label_item" for="singleParentRadio">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left: 36px;">Single Parent</span>
                 <img *ngIf="hcCovertype=='Single Parent'" class="peopleRadioImage"
-                  src="../assets/images/SingleParent-Selected.svg">
-                <img *ngIf="hcCovertype!='Single Parent'" class="peopleRadioImage" src="../assets/images/SingleParent.svg"
+                  src="assets/images/SingleParent-Selected.svg">
+                <img *ngIf="hcCovertype!='Single Parent'" class="peopleRadioImage" src="assets/images/SingleParent.svg"
                   (click)="swapRadioImage('Single Parent')">
               </label>
             </div>
@@ -100,8 +100,8 @@
                 name="HCcover">
               <label class="label_item" for="single">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left:50px;">Just Gas</span>
-                <img *ngIf="hcCovertype=='Single'" class="peopleRadioImage" src="../assets/images/Single-Selected.svg">
-                <img *ngIf="hcCovertype!='Single'" class="peopleRadioImage" src="../assets/images/Single.svg"
+                <img *ngIf="hcCovertype=='Single'" class="peopleRadioImage" src="assets/images/Single-Selected.svg">
+                <img *ngIf="hcCovertype!='Single'" class="peopleRadioImage" src="assets/images/Single.svg"
                   (click)="swapRadioImage('Single')">
               </label>
             </div>
@@ -110,8 +110,8 @@
                 name="HCcover">
               <label class="label_item" for="couples">
                 <span style="font-size: 9px;position: absolute;bottom: 17px;left: 50px;">Just Gas</span>
-                <img *ngIf="hcCovertype=='Couples'" class="peopleRadioImage" src="../assets/images/Couples-Selected.svg">
-                <img *ngIf="hcCovertype!='Couples'" class="peopleRadioImage" src="../assets/images/Couples.svg"
+                <img *ngIf="hcCovertype=='Couples'" class="peopleRadioImage" src="assets/images/Couples-Selected.svg">
+                <img *ngIf="hcCovertype!='Couples'" class="peopleRadioImage" src="assets/images/Couples.svg"
                   (click)="swapRadioImage('Couples')">
               </label>
             </div>
@@ -322,7 +322,7 @@
           </div>
         </form>
         <div *ngIf="success">
-          <img style="height:300px;width:300px;"src="../assets/images/checked.png">
+          <img style="height:300px;width:300px;"src="assets/images/checked.png">
           <h3>Form Submitted Succesfully</h3>
         </div>
       </mat-card>
